@@ -26,10 +26,9 @@ public class ToDoItemController {
     //CREATE
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ToDoItemResponse createToDoItem(@RequestBody ToDoItemRequest request){
-        ToDoItem toDoItem = toDoItemMapper.toEntity(request);
-        toDoItemService.createToDoItem(toDoItem);
-        return toDoItemMapper.toResponse(toDoItem);
+    public ToDoItemResponse createToDoItem(@RequestBody ToDoItem newToDoItem){
+        //ToDoItem toDoItem = toDoItemMapper.toEntity(request);
+        return toDoItemMapper.toResponse(toDoItemService.createToDoItem(newToDoItem));
     }
 
     // READ
