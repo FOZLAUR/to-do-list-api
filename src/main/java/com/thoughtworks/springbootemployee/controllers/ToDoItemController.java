@@ -30,7 +30,6 @@ public class ToDoItemController {
         //ToDoItem toDoItem = toDoItemMapper.toEntity(request);
         return toDoItemMapper.toResponse(toDoItemService.createToDoItem(newToDoItem));
     }
-
     // READ
     @GetMapping()
     public List<ToDoItemResponse> getAllToDoItems() {
