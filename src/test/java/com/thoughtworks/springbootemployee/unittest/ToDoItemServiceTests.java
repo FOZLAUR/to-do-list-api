@@ -10,6 +10,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class ToDoItemServiceTests {
@@ -59,7 +60,7 @@ public class ToDoItemServiceTests {
         ToDoItem actualToDoItem = toDoItemService.updateToDoItem(expectedToDoItem.getToDoId());
 
         //then
-        assertEquals(true, actualToDoItem.isDone());
+        assertTrue(actualToDoItem.isDone());
     }
 
     @Test

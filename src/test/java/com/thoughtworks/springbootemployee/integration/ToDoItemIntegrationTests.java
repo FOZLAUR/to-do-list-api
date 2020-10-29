@@ -76,7 +76,7 @@ public class ToDoItemIntegrationTests {
                 .andExpect(jsonPath("$.done").value(true));
 
         ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getToDoId()).orElse(null);
-        Assertions.assertEquals(true, foundToDoItem.isDone());
+        Assertions.assertTrue(foundToDoItem.isDone());
     }
 
     @Test
