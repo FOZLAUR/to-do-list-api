@@ -55,9 +55,9 @@ public class ToDoItemServiceTests {
         ToDoItemService toDoItemService = new ToDoItemService(toDoItemRepository);
 
         //when
-        when(toDoItemRepository.findById(expectedToDoItem.getToDoId())).thenReturn(java.util.Optional.of(expectedToDoItem));
+        when(toDoItemRepository.findById(expectedToDoItem.getId())).thenReturn(java.util.Optional.of(expectedToDoItem));
         when(toDoItemRepository.save(expectedToDoItem)).thenReturn(updatedToDoItem);
-        ToDoItem actualToDoItem = toDoItemService.updateToDoItem(expectedToDoItem.getToDoId());
+        ToDoItem actualToDoItem = toDoItemService.updateToDoItem(expectedToDoItem.getId());
 
         //then
         assertTrue(actualToDoItem.isDone());
@@ -71,10 +71,10 @@ public class ToDoItemServiceTests {
         ToDoItemService toDoItemService = new ToDoItemService(toDoItemRepository);
 
         //when
-        toDoItemService.deleteToDoItem(expectedToDoItem.getToDoId());
+        toDoItemService.deleteToDoItem(expectedToDoItem.getId());
 
         //then
-        Mockito.verify(toDoItemRepository).deleteById(expectedToDoItem.getToDoId());
+        Mockito.verify(toDoItemRepository).deleteById(expectedToDoItem.getId());
     }
 
     @Test
@@ -85,8 +85,8 @@ public class ToDoItemServiceTests {
         ToDoItemService toDoItemService = new ToDoItemService(toDoItemRepository);
 
         //when
-        when(toDoItemRepository.findById(expectedToDoItem.getToDoId())).thenReturn(java.util.Optional.of(expectedToDoItem));
-        ToDoItem actualToDoItem = toDoItemService.getToDoItemById(expectedToDoItem.getToDoId());
+        when(toDoItemRepository.findById(expectedToDoItem.getId())).thenReturn(java.util.Optional.of(expectedToDoItem));
+        ToDoItem actualToDoItem = toDoItemService.getToDoItemById(expectedToDoItem.getId());
 
         //then
         assertEquals(expectedToDoItem.getText(), actualToDoItem.getText());

@@ -11,8 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +34,7 @@ public class ToDoItemIntegrationTests {
 
         mockMvc.perform(get(TODOS_URI))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].toDoId").isNumber())
+                .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].text").value("aaaaaa"))
                 .andExpect(jsonPath("$[0].done").value(false));
     }
@@ -54,7 +52,7 @@ public class ToDoItemIntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(employeeAsJson))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.toDoId").isNumber())
+                .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.text").value("destoroyah"))
                 .andExpect(jsonPath("$.done").value(false));
     }
@@ -69,13 +67,13 @@ public class ToDoItemIntegrationTests {
         ToDoItem toDoItem = toDoItemRepository.save(new ToDoItem(2, "Chels"));
 
         //then
-        mockMvc.perform(put(TODOS_URI + "/" + toDoItem.getToDoId())
+        mockMvc.perform(put(TODOS_URI + "/" + toDoItem.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updatedTodo))
-                .andExpect(jsonPath("$.toDoId").isNumber())
+                .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.done").value(true));
 
-        ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getToDoId()).orElse(null);
+        ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getId()).orElse(null);
         Assertions.assertTrue(foundToDoItem.isDone());
     }
 
@@ -86,9 +84,9 @@ public class ToDoItemIntegrationTests {
         ToDoItem toDoItem = toDoItemRepository.save(new ToDoItem(2, "Chels"));
 
         //then
-        mockMvc.perform(delete(TODOS_URI + "/" + toDoItem.getToDoId()));
+        mockMvc.perform(delete(TODOS_URI + "/" + toDoItem.getId()));
 
-        ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getToDoId()).orElse(null);
+        ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getId()).orElse(null);
         Assertions.assertNull(foundToDoItem);
     }
 }

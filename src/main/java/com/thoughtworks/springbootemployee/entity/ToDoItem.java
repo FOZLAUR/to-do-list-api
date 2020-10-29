@@ -9,24 +9,24 @@ import javax.persistence.Id;
 public class ToDoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int toDoId;
+    private int id;
     private String text;
     private boolean done;
 
     public ToDoItem() {}
 
-    public ToDoItem(int toDoId, String text) {
-        this.toDoId = toDoId;
+    public ToDoItem(int id, String text) {
+        this.id = id;
         this.text = text;
         this.done = false;
     }
 
-    public int getToDoId() {
-        return toDoId;
+    public int getId() {
+        return id;
     }
 
-    public void setToDoId(int toDoId) {
-        this.toDoId = toDoId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getText() {

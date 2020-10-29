@@ -1,24 +1,24 @@
 package com.thoughtworks.springbootemployee.dto;
 
 public class ToDoItemResponse {
-    private int toDoId;
+    private int id;
     private String text;
     private boolean done;
 
     public ToDoItemResponse() { }
 
-    public ToDoItemResponse(int toDoId, String text, boolean done) {
-        this.toDoId = toDoId;
+    public ToDoItemResponse(int id, String text, boolean done) {
+        this.id = id;
         this.text = text;
         this.done = done;
     }
 
-    public int getToDoId() {
-        return toDoId;
+    public int getId() {
+        return id;
     }
 
-    public void setToDoId(int toDoId) {
-        this.toDoId = toDoId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getText() {

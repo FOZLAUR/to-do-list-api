@@ -8,7 +8,7 @@ public class ToDoItemMapper {
     public ToDoItemResponse toResponse(ToDoItem toDoItem){
         ToDoItemResponse toDoItemResponse = new ToDoItemResponse();
 
-        toDoItemResponse.setToDoId(toDoItem.getToDoId());
+        toDoItemResponse.setId(toDoItem.getId());
         toDoItemResponse.setText(toDoItem.getText());
         toDoItemResponse.setDone(toDoItem.isDone());
 
