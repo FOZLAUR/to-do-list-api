@@ -78,4 +78,17 @@ public class ToDoItemIntegrationTests {
         ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getToDoId()).orElse(null);
         Assertions.assertEquals(true, foundToDoItem.isDone());
     }
+
+    @Test
+    void should_delete_todo_when_delete_given_todoId() throws Exception {
+
+        //when
+        ToDoItem toDoItem = toDoItemRepository.save(new ToDoItem(2, "Chels"));
+
+        //then
+        mockMvc.perform(delete(TODOS_URI + "/" + toDoItem.getToDoId()));
+
+        ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getToDoId()).orElse(null);
+        Assertions.assertNull(foundToDoItem);
+    }
 }
