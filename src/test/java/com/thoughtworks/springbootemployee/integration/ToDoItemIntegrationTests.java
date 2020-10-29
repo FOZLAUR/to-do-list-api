@@ -13,8 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -58,5 +57,25 @@ public class ToDoItemIntegrationTests {
                 .andExpect(jsonPath("$.toDoId").isNumber())
                 .andExpect(jsonPath("$.text").value("destoroyah"))
                 .andExpect(jsonPath("$.done").value(false));
+    }
+
+    @Test
+    void should_update_todo_when_update_given_todoId() throws Exception {
+        //given
+        String updatedTodo = "{\n" +
+                "}";
+
+        //when
+        ToDoItem toDoItem = toDoItemRepository.save(new ToDoItem(2, "Chels"));
+
+        //then
+        mockMvc.perform(put(TODOS_URI + "/" + toDoItem.getToDoId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(updatedTodo))
+                .andExpect(jsonPath("$.toDoId").isNumber())
+                .andExpect(jsonPath("$.done").value(true));
+
+        ToDoItem foundToDoItem = toDoItemRepository.findById(toDoItem.getToDoId()).orElse(null);
+        Assertions.assertEquals(true, foundToDoItem.isDone());
     }
 }
