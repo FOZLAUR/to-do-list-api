@@ -22,17 +22,17 @@ public class ToDoItemService {
         return toDoItemRepository.findAll();
     }
 
-    public ToDoItem updateToDoItem(int taskId) {
-        ToDoItem toDoItem = toDoItemRepository.findById(taskId).orElse(null);
+    public ToDoItem updateToDoItem(int toDoId) {
+        ToDoItem toDoItem = toDoItemRepository.findById(toDoId).orElse(null);
         toDoItem.setDone(!toDoItem.isDone());
         return toDoItemRepository.save(toDoItem);
     }
 
-    public void deleteToDoItem(int taskId) {
-        toDoItemRepository.deleteById(taskId);
+    public void deleteToDoItem(int toDoId) {
+        toDoItemRepository.deleteById(toDoId);
     }
 
-    public ToDoItem getToDoItemById(int taskId) {
-        return toDoItemRepository.findById(taskId).orElse(null);
+    public ToDoItem getToDoItemById(int toDoId) {
+        return toDoItemRepository.findById(toDoId).orElse(null);
     }
 }

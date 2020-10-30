@@ -26,10 +26,11 @@ public class ToDoItemController {
     //CREATE
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ToDoItemResponse createToDoItem(@RequestBody ToDoItem newToDoItem){
-        //ToDoItem toDoItem = toDoItemMapper.toEntity(request);
-        return toDoItemMapper.toResponse(toDoItemService.createToDoItem(newToDoItem));
+    public ToDoItemResponse createToDoItem(@RequestBody ToDoItemRequest request){
+        ToDoItem toDoItem = toDoItemMapper.toEntity(request);
+        return toDoItemMapper.toResponse(toDoItemService.createToDoItem(toDoItem));
     }
+
     // READ
     @GetMapping()
     public List<ToDoItemResponse> getAllToDoItems() {
@@ -38,15 +39,15 @@ public class ToDoItemController {
     }
 
     // UPDATE
-    @PutMapping("/{taskId}")
-    public ToDoItemResponse updateToDoItem(@PathVariable int taskId){
-        ToDoItem updatedToDoItem = toDoItemService.updateToDoItem(taskId);
+    @PutMapping("/{toDoId}")
+    public ToDoItemResponse updateToDoItem(@PathVariable int toDoId){
+        ToDoItem updatedToDoItem = toDoItemService.updateToDoItem(toDoId);
         return toDoItemMapper.toResponse(updatedToDoItem);
     }
 
     // DELETE
-    @DeleteMapping("/{taskId}")
-    public void deleteToDoItem(@PathVariable int taskId){
-        toDoItemService.deleteToDoItem(taskId);
+    @DeleteMapping("/{toDoId}")
+    public void deleteToDoItem(@PathVariable int toDoId){
+        toDoItemService.deleteToDoItem(toDoId);
     }
 }
