@@ -42,7 +42,7 @@ public class ToDoItemIntegrationTests {
     @Test
     void should_create_todo_when_create_given_todo_request() throws Exception {
         //given
-        String employeeAsJson = "{\n" +
+        String toDoAsJson = "{\n" +
             "\"text\" : \"destoroyah\"\n" +
         "}";
 
@@ -50,7 +50,7 @@ public class ToDoItemIntegrationTests {
         //then
         mockMvc.perform(post(TODOS_URI)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(employeeAsJson))
+                .content(toDoAsJson))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.text").value("destoroyah"))
