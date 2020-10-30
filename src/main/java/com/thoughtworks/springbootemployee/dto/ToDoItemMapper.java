@@ -19,7 +19,7 @@ public class ToDoItemMapper {
         ToDoItem toDoItem = new ToDoItem();
 
         toDoItem.setText(toDoItemRequest.getText());
-        toDoItem.setDone(toDoItemRequest.isDone());
+        //toDoItem.setDone(toDoItemRequest.isDone());
 
         return toDoItem;
     }
